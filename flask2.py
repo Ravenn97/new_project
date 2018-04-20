@@ -39,12 +39,14 @@ def sum_of_week():
 	cur.execute("SELECT _date from staticweek")
 	mydb.commit()
 	for day in cur.fetchall():
-		list_day.append(day[0])
-		print("them thanh cong")
-	seven_days_latest = list(set(sorted(list_day)))[-7:]
+		#cur.fetchall() trả về 1 tuple, lấy giá trị thứ nhất của tuple
+		list_day.append(day[0]) 
+		print("add success")
+		#lấy 7 ngày gần nhất, sử dụng sorted sắp xếp 7 ngày đến ngày gần nhất dùng slide [-7:] sử dụng set để loaij bỏ các ngày trùng nhau
+	seven_days_latest = list(set(sorted(list_day)))[-7:]  
 	for day in seven_days_latest:
 		cur.execute("SELECT COUNT(cid), SUM(ndelivered), SUM(ndroped), SUM(nclicked), SUM(nopened), _date FROM staticweek WHERE _date =  %s GROUP BY _date",(str(day),))
-		print("ex thanh cong")
+		print("excute success")
 		mydb.commit()
 		result = cur.fetchall()[0]
 		print(len(result), result)
