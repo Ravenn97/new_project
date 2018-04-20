@@ -50,7 +50,7 @@ def sum_of_week():
 		mydb.commit()
 		result = cur.fetchall()[0]
 		print(len(result), result)
-		list_result.append({"day":day, "count_id" : result[0], "sum_ndelivered" : result[1], "sum_ndroped": result[2], "sum_nclicked" : result[3], "sum_opened" : result[4]})
+		list_result.append({"day":str(day), "count_id" : int(result[0]), "sum_ndelivered" : int(result[1]), "sum_ndroped": int(result[2]), "sum_nclicked" : int(result[3]), "sum_opened" : int(result[4])})
 
 	cur.close()
 	mydb.close()
